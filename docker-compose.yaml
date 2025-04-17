@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: root
+  
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: 'backend'
+    restart: on-failure
+    environment:
+      - db_host=mysql
+      - JWT_SECRET_KEY=your_jwt_secret_key
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mysql
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: 'frontend'
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
