@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@nestjs/typeorm": "^11.0.0",
+    "mysql2": "^3.14.0",
+    "typeorm": "^0.3.22"
+  },
+  "scripts": {
+    "start": "node dist/main.js",
+    "start:dev": "nest start --watch",
+    "build": "nest build",
+    "migration:create": "npx typeorm migration:create src/migrations/init --dataSource=ormconfig.js",
+    "migration:generate": "npx typeorm migration:generate src/migrations/auto --dataSource=src/ormconfig.ts",
+    "migration:run": "npx typeorm migration:run --dataSource=ormconfig.js",
+    "migration:revert": "npx typeorm migration:revert --dataSource=ormconfig.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

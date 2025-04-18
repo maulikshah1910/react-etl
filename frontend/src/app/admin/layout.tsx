@@ -14,7 +14,7 @@ const DashboardLayout = ({
                 <DashboardNavbar />
             </div>
 
-            <div className="flex-1 p-6 bg-gray-100">
+            <div className="flex-1 p-2 bg-gray-100 text-gray-800">
                 {children}
             </div>
         </div>
